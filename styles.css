@@ -1252,9 +1252,9 @@ h1, h2, h3 {
 
 .memory__last {
   margin-top: var(--space-2xl);
-  max-width: 22ch;
+  max-width: min(100%, 32ch);
   font-family: var(--font-display);
-  font-size: var(--text-display-s);
+  font-size: clamp(1.4rem, 6.8vw, var(--text-display-s));
   font-weight: 600;
   line-height: var(--leading-tight);
   overflow-wrap: anywhere;
