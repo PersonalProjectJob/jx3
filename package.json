@@ -1,0 +1,14 @@
+{
+  "name": "giang-ho-y-cuu-landing",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Landing page máy chủ độc lập phiên bản cấp 80 (HTML/CSS/JS thuần).",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5178 --open",
+    "start": "vite --host 127.0.0.1 --port 5178 --open",
+    "lan": "vite --host 0.0.0.0 --port 5178"
+  },
+  "devDependencies": {
+    "vite": "^8.3.3"
+  }
+}
