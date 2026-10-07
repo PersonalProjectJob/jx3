@@ -540,6 +540,20 @@
 
   /* ---------- Video minh hoạ tính năng: ảnh bìa trước, bấm mới tải trình phát ---------- */
 
+  var featureVideoVisible = new WeakMap();
+  function pauseFeatureVideo(frame) {
+    if (frame.contentWindow) frame.contentWindow.postMessage(JSON.stringify({ event: "command", func: "pauseVideo", args: [] }), "*");
+  }
+  var featureVideoObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var frame = entry.target.querySelector("iframe");
+      if (!frame) return;
+      var visible = entry.intersectionRatio > 0.25;
+      featureVideoVisible.set(frame, visible);
+      if (!visible) pauseFeatureVideo(frame);
+    });
+  }, { threshold: [0, 0.25] });
+
   document.querySelectorAll(".video[data-yt]:not(.video--hero)").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var id = encodeURIComponent(btn.dataset.yt);
@@ -562,7 +576,9 @@
       // Đăng ký nghe trạng thái của trình phát này (YouTube IFrame API qua postMessage)
       frame.addEventListener("load", function () {
         frame.contentWindow.postMessage(JSON.stringify({ event: "listening", id: id, channel: "widget" }), "*");
+        if (featureVideoVisible.get(frame) === false || document.hidden) pauseFeatureVideo(frame);
       });
+      featureVideoObserver.observe(wrap);
       pauseOthers(frame);
     });
   });
@@ -571,10 +587,13 @@
   function pauseOthers(except) {
     document.querySelectorAll(".video__frame iframe").forEach(function (f) {
       if (f === except || !f.contentWindow) return;
-      f.contentWindow.postMessage(JSON.stringify({ event: "command", func: "pauseVideo", args: [] }), "*");
+      pauseFeatureVideo(f);
     });
     document.dispatchEvent(new CustomEvent("jx:video-play", { detail: { frame: except } }));
   }
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) document.querySelectorAll(".features .video__frame iframe").forEach(pauseFeatureVideo);
+  });
   window.addEventListener("message", function (e) {
     if (!/^https:\/\/www\.youtube(-nocookie)?\.com$/.test(e.origin)) return;
     var data;
@@ -583,7 +602,10 @@
     if (state !== 1) return; // 1 = đang phát
     var src = null;
     document.querySelectorAll(".video__frame iframe").forEach(function (f) { if (f.contentWindow === e.source) src = f; });
-    if (src) pauseOthers(src);
+    if (src) {
+      if (featureVideoVisible.get(src) === false || document.hidden) pauseFeatureVideo(src);
+      else pauseOthers(src);
+    }
   });
 
   /* ---------- Tin tức ---------- */
