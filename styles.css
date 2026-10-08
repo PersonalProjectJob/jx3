@@ -1005,6 +1005,32 @@ h1, h2, h3 {
   font-size: var(--text-sm);
   color: var(--color-muted);
 }
+/* Video giới thiệu phái (JS điền khi phái có video) + nút sang trang võ công */
+.panel__video {
+  margin-top: var(--space-md);
+  max-width: 30rem;
+}
+.panel__video[hidden] { display: none; }
+/* Dòng ghi nguồn video ngay dưới khung. Chú thích chữ nội dòng nên liên kết tiêu đề được phép ngắt dòng. */
+.panel__source {
+  margin-top: var(--space-2xs);
+  max-width: 30rem;
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+.panel__source a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--color-rule);
+  transition: text-decoration-color var(--dur-fast) var(--ease-out);
+}
+.panel__source a:hover,
+.panel__source a:focus-visible { text-decoration-color: var(--color-accent); }
+.panel__more { margin-top: var(--space-md); gap: var(--space-2xs); }
 
 /* ---------- Tính năng · alternating diptych ---------- */
 
@@ -1597,6 +1623,17 @@ h1, h2, h3 {
   .panel.is-entering { animation-name: fade-in; }
 }
 
+/* ---------- Tên môn phái viết dọc ở góc trên phải sân khấu ----------
+ * Cột lạc khoản dọc (chữ Latin xoay 90°) + con dấu 八十 ở góc trên phải, sát mép màn hình; nhân vật giữ nguyên cỡ.
+ * Chữ được phép chồng lên vũ khí (đầu giáo, lưỡi đao) nhưng không chồng lên thân hình nhân vật: đã xem từng phái ở nhiều độ rộng. */
+.hero__mark {
+  left: auto;
+  right: var(--gutter);
+  top: var(--space-sm);
+  gap: var(--space-2xs);
+}
+.hero__title { font-size: var(--text-2xl); }
+
 /* ---------- ≥ 25rem ---------- */
 
 @media (min-width: 25rem) {
@@ -1668,8 +1705,11 @@ h1, h2, h3 {
   /* Khung nhân vật tràn nhẹ ra mép phải để ảnh ngang (Đường Môn, Thất Tú…) đủ cao */
   .hero__cast { inset: 2% -5% 0 36%; }
   .cast { object-position: 62% 100%; }
+  /* Màn hình rộng: tên phái dọc lùi khỏi mép phải, 0 ở 80rem tăng dần tới 15rem (240px) từ 100rem trở lên. */
+  .hero__mark { right: calc(var(--gutter) + clamp(0px, (100vw - 80rem) * 0.75, 15rem)); }
+  /* Ngũ Độc: đầu và mũ của nhân vật nằm sát góc này nên chỉ lùi tối đa 11.25rem (180px), lùi xa hơn là chữ đè lên mặt và tóc. */
+  .hero__stage:has(.cast.is-active[data-name="Ngũ Độc"]) .hero__mark { right: calc(var(--gutter) + clamp(0px, (100vw - 80rem) * 0.75, 11.25rem)); }
   .hero__picker { right: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); bottom: var(--space-xl); }
-  .hero__mark { right: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); top: 7%; }
   .hero__far { height: 58%; }
   .hero__near { height: 30%; }
 
