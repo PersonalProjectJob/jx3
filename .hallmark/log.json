@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-10-08",
+    "macrostructure": "Split Studio + Catalogue",
+    "theme": "custom",
+    "theme_axes": "light / high-contrast-serif / warm",
+    "vibe": "thuỷ mặc, giấy dó, mực tàu, son ấn chương (kế thừa tokens.css)",
+    "enrichment": "E5 hand-built SVG (vòng chỉ số ngũ giác)",
+    "nav": "N9 edge-aligned",
+    "footer": "Ft1 mast-headed",
+    "brief": "Trang Võ công: tra cứu 270 chiêu theo phái/bộ/tầng, tổng quan phái (video + vòng chỉ số + chiêu then chốt); landing thêm video + nút Xem chi tiết"
+  },
+  {
     "date": "2026-10-07",
     "macrostructure": "Marquee Hero",
     "theme": "custom",

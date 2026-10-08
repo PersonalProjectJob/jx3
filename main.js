@@ -538,6 +538,75 @@
     }
   })();
 
+  /* ---------- Video giới thiệu từng phái: điền từ data/sects.js (nếu có) ---------- */
+
+  (function () {
+    var sects = typeof window.JX_SECTS !== "undefined" && Array.isArray(window.JX_SECTS) ? window.JX_SECTS : [];
+    // Nguồn video: lấy từ data/sects.js (JX_VIDEO_SOURCE); thiếu thì dùng giá trị mặc định trùng dữ liệu.
+    var src = window.JX_VIDEO_SOURCE || {};
+    var source = {
+      channel: typeof src.channel === "string" && src.channel ? src.channel : "VÕ LÂM TRUYỀN KỲ 3",
+      url: typeof src.url === "string" && /^https:\/\/www\.youtube\.com\//.test(src.url) ? src.url : "https://www.youtube.com/@VLTKPhienBan3D"
+    };
+    function sourceLink(href, text) {
+      var a = document.createElement("a");
+      a.href = href;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = text;
+      return a;
+    }
+    // Dòng nguồn: Nguồn: “<tiêu đề>” · kênh YouTube chính thức <kênh>. Không có tiêu đề thì bỏ liên kết tiêu đề.
+    function sourceLine(yt, title) {
+      var p = document.createElement("p");
+      p.className = "panel__source";
+      var clean = typeof title === "string" ? title.replace(/\s+/g, " ").trim() : "";
+      if (clean) {
+        p.appendChild(document.createTextNode("Nguồn: “"));
+        p.appendChild(sourceLink("https://www.youtube.com/watch?v=" + encodeURIComponent(yt), clean));
+        p.appendChild(document.createTextNode("” · kênh YouTube chính thức "));
+      } else {
+        p.appendChild(document.createTextNode("Nguồn: kênh YouTube chính thức "));
+      }
+      p.appendChild(sourceLink(source.url, source.channel));
+      return p;
+    }
+    sects.forEach(function (sect) {
+      if (!sect || !sect.video || !sect.video.yt) return;
+      var host = document.getElementById("panel-" + String(sect.id));
+      var slot = host && host.querySelector(".panel__video");
+      if (!slot) return;
+      var yt = String(sect.video.yt);
+      var btn = document.createElement("button");
+      btn.className = "video";
+      btn.type = "button";
+      btn.setAttribute("data-yt", yt);
+      btn.setAttribute("aria-label", "Phát video: Giới thiệu phái " + String(sect.name || ""));
+      var img = document.createElement("img");
+      img.src = "https://i.ytimg.com/vi/" + encodeURIComponent(yt) + "/hqdefault.jpg";
+      img.alt = "";
+      img.width = 480;
+      img.height = 360;
+      img.loading = "lazy";
+      img.decoding = "async";
+      var play = document.createElement("span");
+      play.className = "video__play";
+      play.setAttribute("aria-hidden", "true");
+      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("focusable", "false");
+      var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", "M8 5.5v13l10-6.5z");
+      svg.appendChild(path);
+      play.appendChild(svg);
+      btn.appendChild(img);
+      btn.appendChild(play);
+      slot.appendChild(btn);
+      slot.appendChild(sourceLine(yt, sect.video.title));
+      slot.hidden = false;
+    });
+  })();
+
   /* ---------- Video minh hoạ tính năng: ảnh bìa trước, bấm mới tải trình phát ---------- */
 
   var featureVideoVisible = new WeakMap();

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Võ công · Giang hồ y cựu</title>
+  <meta name="description" content="Tra cứu toàn bộ chiêu thức của chín môn phái: tâm pháp, bộ võ công, cự ly, hao tổn, thời gian thi triển và điều chỉnh." />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap&text=江湖依旧天策纯阳万花七秀少林藏剑五毒唐门明教浩气盟恶人谷名大会八十令讯" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="vo-cong.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Bỏ qua, tới nội dung</a>
+
+  <!-- N9 · Edge-aligned minimal: wordmark trái, CTA tải phải -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="wordmark" href="index.html#top" aria-label="Giang hồ y cựu, về trang chủ">
+        <span class="seal seal--sm" lang="zh-Hans" aria-hidden="true">江湖</span>
+        <span class="wordmark__vi">Giang hồ y cựu</span>
+      </a>
+      <a class="btn btn--primary btn--compact" href="https://drive.google.com/file/d/1e8T7saR0GR9iyNZODp_TKPTQjfyg_2bL/view?usp=sharing" target="_blank" rel="noopener">Tải bản PC</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container vc">
+      <header class="vc__head">
+        <h1 class="vc__title">Võ công</h1>
+        <p class="vc__count" id="vc-count"></p>
+      </header>
+
+      <noscript><p class="vc__notice">Trang tra cứu cần bật JavaScript để hiển thị dữ liệu.</p></noscript>
+
+      <div class="tabs vc__tabs" role="tablist" aria-label="Môn phái" id="vc-tabs"></div>
+
+      <div class="vc__panel" id="vc-panel" role="tabpanel" tabindex="0">
+        <div class="vc__overview" id="vc-overview"></div>
+        <section class="vc__key" id="vc-key" aria-labelledby="vc-key-title" hidden>
+          <h3 class="vc__h3" id="vc-key-title">Chiêu then chốt</h3>
+          <ul class="keylist" id="vc-keylist"></ul>
+        </section>
+        <section class="vc__catalog" id="vc-catalog" aria-labelledby="vc-catalog-title">
+          <h3 class="vc__h3" id="vc-catalog-title">Toàn bộ chiêu thức</h3>
+          <div class="finder">
+            <label class="finder__label sr-only" for="vc-search">Tìm chiêu thức</label>
+            <input class="finder__input" id="vc-search" type="search" placeholder="Tìm chiêu thức hoặc nội dung" autocomplete="off" spellcheck="false" />
+          </div>
+          <p class="vc__status" id="vc-status" role="status" aria-live="polite"></p>
+          <div class="catalog" id="vc-list"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Ft1 · Mast-headed -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__mast">
+        <span class="seal seal--lg" lang="zh-Hans" aria-hidden="true">江湖</span>
+        <div>
+          <p class="footer__name">Giang hồ y cựu</p>
+          <p class="footer__tag">Bằng hữu năm ấy, về chưa?</p>
+        </div>
+      </div>
+      <div class="footer__actions">
+        <a class="btn btn--primary" href="https://drive.google.com/file/d/1e8T7saR0GR9iyNZODp_TKPTQjfyg_2bL/view?usp=sharing" target="_blank" rel="noopener">Tải bản PC</a>
+        <a class="btn btn--ghost" href="https://discord.gg/Nn3tNvPnG" target="_blank" rel="noopener">Discord</a>
+      </div>
+      <p class="footer__legal">Máy chủ độc lập do cộng đồng vận hành, không liên kết với VNG, Kingsoft hay Seasun. <span lang="zh-Hans">剑网3</span> và Võ Lâm Truyền Kỳ là thương hiệu của các chủ sở hữu tương ứng. Hình ảnh nhân vật và ảnh chụp trong game thuộc bản quyền Kingsoft · Seasun.<br />© 2026 Sota Thảo · Bản quyền landing page.</p>
+    </div>
+  </footer>
+
+  <script src="data/sects.js"></script>
+  <script src="data/skills.js"></script>
+  <script src="data/skill-roles.js"></script>
+  <script src="vo-cong.js"></script>
+</body>
+</html>
