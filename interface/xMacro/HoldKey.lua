@@ -1,0 +1,1 @@
+-- Compatibility path retained. Native info.ini loads Features/KeySpam.lua exactly once.

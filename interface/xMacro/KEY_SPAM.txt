@@ -1,0 +1,43 @@
+XMACRO KEY SPAM - 4 PHIM / 50 MS
+
+1. Chay start_xmacro.bat mot lan moi khi khoi dong Windows/tool.
+2. Tai lai addon hoac vao lai game de nap cac file Native va HoldKey.ini moi.
+3. Cho dong Helper: ONLINE (khoang 1 giay).
+4. Nhap 1-4 phim khac nhau vao 4 o. O trong duoc bo qua.
+   Ho tro: 0-9, A-Z, F1-F24, SPACE, TAB, ENTER, ~, mui ten,
+   HOME, END, INSERT, DELETE, BACKSPACE, PGUP, PGDN.
+   Khong nhap to hop CTRL/ALT/SHIFT.
+5. Bam BAT DAU. Tat ca phim duoc nhan trong moi chu ky 50 ms.
+   Go phim khac khong huy. Client hien bo qua phim khi Alt+Tab; ve game se tiep tuc.
+6. Bam DUNG de dung. Nut -/+ thu nho/mo lai bang.
+   Keo thanh tieu de (khong phai nut -/+) de doi vi tri.
+
+Phim spam can gan voi vi-lenh cua phai, vi du /script macro("VH").
+Ma goi: VH, 7T, TS, TK, DMKV, DMTL; hien chi VH da co combo thuc thi.
+Ma can dat trong dau nhay. Khong doi 4 o phim thanh ten ma phai.
+
+Neu Helper: OFFLINE: chay start_xmacro.bat; xem loi trong console.
+Neu CHO GAME: dua cua so game can dung len truoc mot lan.
+Neu LOI: bam DUNG, kiem tra game/tool cung muc quyen, bam BAT DAU lai.
+Tool chi gui WM_KEYDOWN/UP den jx3client.exe/game.exe trong thu muc
+cai dat nay, kiem tra HWND/PID/duong dan/thoi diem tao process.
+Khong co SendInput vao ung dung dang mo.
+DANG SPAM nghia la helper da post message thanh cong; can thu trong
+client de biet game co thuc su xu ly message hay khong.
+Addon Lua khong tu chay duoc chuong trinh Windows; launcher van can.
+Reload addon luon gui DUNG, giu lai phim va vi tri da luu.
+
+Verification: API fixtures + real file bridge, not live in-game UI QA.
+
+PHIM TAT BAT / TAT CHUNG MOT PHIM
+Thoat game va vao lai de xoa dang ky hotkey cu. Vao ESC -> Thiet lap phim tat:
+- xMacro - Key Spam BAT/TAT: gan MOT phim. Bam lan 1 bat, lan 2 dung.
+Giu phim toggle khong bat/tat lien tuc; phai nha va bam lai.
+Tranh gan hotkey toggle trung voi 4 phim dang spam.
+Toggle dung 4 o hien tai, van hoat dong khi bang thu nho.
+Dung van gui lenh tat khi helper OFFLINE.
+Hotkey do game nhan; khi Alt+Tab, ve game de bam hotkey.
+
+CURRENT: Windows key spam restored; no native macro() auto-loop.
+Client ignores posted keys when unfocused; background input is not confirmed.
+Rotation live diagnostics remain in vanhoa_status.jx3dat.

@@ -1,0 +1,55 @@
+xMacro 0.9.7 - Them school/profile (chi danh cho nguoi bao tri)
+
+Canonical helper: Tools/KeySpam/engine.py. HoldKeyEngine.py chi la wrapper.
+Helper doc/ghi hold_key_control.jx3dat va hold_key_status.jx3dat tai goc addon.
+Bang game giu hold_key_ui.jx3dat tai goc addon. Khong doi schema control v2.
+
+Them module Schools/<School>/<Profile>.lua da xac minh:
+xMacro.Schools.Register(school, profile, {run=function(name) ... end,
+    defaultScript=optional_string})
+Resolve(school, profile) chi lay dung cap da dang ky; khong fallback ngau nhien.
+Cac thu muc Core/Schools/Features la MA NGUON canonical de bao tri.
+Game nap 8 file Native/XM00_Bootstrap.lua ... XM07_KeySpam.lua theo lua_0..7.
+Ten file Native la duy nhat; canonical van nam trong Core/Schools/Features.
+Them module moi vao RUNTIME_MODULES (BUILD_RUNTIME.py) va NATIVE_NAMES
+(BUILD_NATIVE.py), cap nhat lua_n trong info.ini theo dung thu tu.
+Sau khi sua module/Config: python BUILD_NATIVE.py --addon Interface/xMacro
+Lenh nay tao lai ca Runtime.lua va cac file Native. Khong sua file sinh bang tay.
+Bootstrap danh dau du 7 module chua nap; chi bat combo khi tat ca da thanh cong.
+Config.lua chon xMacro.Config={school='VanHoa',profile='HoaGian'} cho ban phat hanh.
+Moi cap moi can test rieng; khong coi ThatTu reference la da ho tro.
+Bang SCHOOL_CODES trong Macro.lua chon chinh xac cap school/profile:
+VH=VanHoa/HoaGian, 7T=ThatTu/BangTam, TS=ThienSach/DPS,
+TK=TangKiem/DPS, DMKV=DuongMon/KinhVu, DMTL=DuongMon/ThienLa.
+TS/TK hien chi giu cho profile DPS; khi bo sung combo co the cap nhat cap nay.
+Ma dang ky khong dong nghia da co rotation; can them module thuc thi da test.
+Lenh /script macro("DMKV") chi chay KinhVu, khong fallback sang ThienLa/VanHoa.
+Cap nhat ADDON_FILES trong tools/build_xmacro_package.py khi them file phat hanh.
+
+Build exe (Windows x64, Python 3.12): tao venv NGOAI distribution;
+pip install pyinstaller==6.22.3
+python -m PyInstaller --onefile --console --name KeySpam --distpath <addon>
+  --workpath <temporary-build> --specpath <temporary-build> <addon>/Tools/KeySpam/engine.py
+Build ZIP 0.9.7 sau khi Core/Schools/Features da ghep xong:
+Builder tu sinh Runtime.lua va Native tu cac file allowlist va Config phat hanh sach;
+khong lay Runtime.lua cu tren dia. Goi ZIP co san cac file sinh, nguoi nhan
+khong can Python va khong can tu build.
+python tools/build_xmacro_package.py --source-root <game-or-worktree> --output <release.zip>
+--dry-run chi validate va liet ke; khong tao ZIP.
+
+BAO TRI MA NGUON TRONG GOI ZIP 0.9.7
+Sau khi sua nguon, mo terminal tai thu muc da giai nen goi va chay:
+python BUILD_NATIVE.py --addon Interface/xMacro
+Chi sau khi build thanh cong moi reload addon/vao lai game.
+Lenh nay danh cho nguoi bao tri co Python 3; nguoi cai ZIP khong can chay.
+Neu dung repository: python tools/build_xmacro_native.py --addon interface/xMacro
+
+LUU Y VE VERSION TRONG INFO.INI
+version=0.8 duoc giu theo khai bao native cua ban addon da hoat dong.
+Khong doi truong nay theo so phat hanh goi ZIP. Ban phat hanh hien tai
+nam o release=0.9.7, ten xMacro 0.9.7 va xMacro.Runtime.version.
+Builder se tu choi goi neu version native khac0.8.
+
+MA HOA LUA 0.9.7
+Cac file sinh Native va Runtime dung UTF-8 BOM. Khong bo BOM khi luu lai.
+BOM giup native loader bo qua chuyen ANSI he thong sang UTF-8.

@@ -1,0 +1,1 @@
+-- Compatibility path retained. Native info.ini loads Core/functions.lua.

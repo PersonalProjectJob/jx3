@@ -1,0 +1,2 @@
+-- Legacy compatibility entry. Runtime modules are loaded exclusively by info.ini.
+-- Deliberately inert to avoid replacing the public dispatcher or panel callbacks.
