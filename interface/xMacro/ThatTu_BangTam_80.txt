@@ -1,0 +1,19 @@
+/config channel-on
+/wpwatch U Nguyệt-Loạn Hoa|Phất Khởi Long Y|Thủy Thông Thiết|10|1.5|U Nguyệt-Loạn Hoa|4
+/procwatch U Nguyệt-Loạn Hoa|Kiếm Khí Trường Giang|Đại Huyền Cấp Khúc
+
+/config before:[xmnobuff:U Nguyệt-Loạn Hoa]
+/usependant [xmtbuffstack:Cấp Khúc>=3]
+/skill [xmtbuffstack:Cấp Khúc>=3] Phồn Âm Cấp Tiết
+
+/skill [mana<0.85] Long Trì Nhạc
+/skill [qidian<=2] Mãn Đường Thế
+/skill [qidian>0,mana>0.15,distance<10] Kiếm Thần Vô Ngã
+
+/skill [qidian>=7] Kiếm Phá Hư Không
+/skill [qidian>=4,xmtbuffstack:Cấp Khúc>=3] Kiếm Khí Trường Giang
+/skill [xmtbuffstack:Cấp Khúc>=3] Giang Hải Ngưng Quang
+
+/skill [xmnobuff:Thủy Thông Thiết] Đại Huyền Cấp Khúc
+/skill [xmbufftime:Thủy Thông Thiết>1.5] Đại Huyền Cấp Khúc
+/config before:null

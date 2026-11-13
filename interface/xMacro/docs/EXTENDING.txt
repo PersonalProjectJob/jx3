@@ -1,0 +1,38 @@
+xMacro 0.9.1 - Them school/profile (chi danh cho nguoi bao tri)
+
+Canonical helper: Tools/KeySpam/engine.py. HoldKeyEngine.py chi la wrapper.
+Helper doc/ghi hold_key_control.jx3dat va hold_key_status.jx3dat tai goc addon.
+Bang game giu hold_key_ui.jx3dat tai goc addon. Khong doi schema control v2.
+
+Them module Schools/<School>/<Profile>.lua da xac minh:
+xMacro.Schools.Register(school, profile, {run=function(name) ... end,
+    defaultScript=optional_string})
+Resolve(school, profile) chi lay dung cap da dang ky; khong fallback ngau nhien.
+Cac thu muc Core/Schools/Features la MA NGUON canonical de bao tri.
+Game chi nap Runtime.lua qua lua_0 trong info.ini, tranh thu tu nap module
+khac nhau giua cac client. Khong them tung lua_n rieng le cho module.
+Them module moi vao danh sach thu tu cua tools/build_xmacro_runtime.py
+sau Registry va truoc Macro.lua dispatcher; moi module co scope do..end.
+Sau moi lan sua module/Config: build lai Runtime.lua TRUOC khi reload addon.
+Khong sua Runtime.lua bang tay: day la file sinh tu ma nguon.
+Config.lua chon xMacro.Config={school='VanHoa',profile='HoaGian'} cho ban phat hanh.
+Moi cap moi can test rieng; khong coi ThatTu reference la da ho tro.
+Cap nhat ADDON_FILES trong tools/build_xmacro_package.py khi them file phat hanh.
+
+Build exe (Windows x64, Python 3.12): tao venv NGOAI distribution;
+pip install pyinstaller==6.22.3
+python -m PyInstaller --onefile --console --name KeySpam --distpath <addon>
+  --workpath <temporary-build> --specpath <temporary-build> <addon>/Tools/KeySpam/engine.py
+Build ZIP 0.9.1 sau khi Core/Schools/Features da ghep xong:
+Builder tu sinh Runtime.lua tu cac file allowlist va Config phat hanh sach;
+khong lay Runtime.lua cu tren dia. Goi ZIP co san Runtime.lua, nguoi nhan
+khong can Python va khong can tu build.
+python tools/build_xmacro_package.py --source-root <game-or-worktree> --output <release.zip>
+--dry-run chi validate va liet ke; khong tao ZIP.
+
+BAO TRI MA NGUON TRONG GOI ZIP 0.9.1
+Sau khi sua nguon, mo terminal tai thu muc da giai nen goi va chay:
+python BUILD_RUNTIME.py --addon Interface/xMacro
+Chi sau khi build thanh cong moi reload addon/vao lai game.
+Lenh nay danh cho nguoi bao tri co Python 3; nguoi cai ZIP khong can chay.
+Neu dung repository: python tools/build_xmacro_runtime.py --addon interface/xMacro
