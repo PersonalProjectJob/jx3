@@ -1,0 +1,34 @@
+/config channel-on
+/wpcycle Bích Lạc|Quỷ Liễu Diệu Mặc|4761@3|10|1.7|Bích Lạc|10
+
+/skill [wp:Quỷ Liễu Diệu Mặc,buff:4761=10,bufftime:4761<=1.7,buff:Thủy Nguyệt Vô Gian|Loạn Tửu Thanh Hà] Dương Minh Chỉ
+/skill [wp:Quỷ Liễu Diệu Mặc,buff:4761=10,bufftime:4761<=1.7,nocd:Ngọc Thạch Câu Phần] Ngọc Thạch Câu Phần
+/skill [wp:Quỷ Liễu Diệu Mặc,buff:4761=10,bufftime:4761<=1.7] Thương Dương Chỉ
+
+/usependant [buff:Bích Lạc,nobuff:3853]
+/skillraw [buff:Bích Lạc] Ngọc Thạch Câu Phần
+
+/skill [tnobuff:Phệ Cốt;tbufftime:Phệ Cốt<3] Thương Dương Chỉ
+/skill [nobuff:Tĩnh Minh,mbuff:Lan Thôi Ngọc Chiết] Ngọc Thạch Câu Phần
+/skill [fight,mana<0.9,nobuff:Loạn Tửu Thanh Hà] Thủy Nguyệt Vô Gian
+/skill [bufftime:Tĩnh Minh>59] Chung Linh Dục Tú
+
+/config before:[nombuff:Chung Linh Dục Tú;mbufftime:Chung Linh Dục Tú<2]
+/skill [bufftime:Tứ Du>19;cdtime:Ngọc Thạch Câu Phần>15;mbufftime:Thương Dương Chỉ>19] Chung Linh Dục Tú
+
+/config before:[nombuff:Thương Dương Chỉ]
+/skill [nombuff:Lan Thôi Ngọc Chiết,cdtime:Ngọc Thạch Câu Phần<3] Thương Dương Chỉ
+/skill [cdtime:Ngọc Thạch Câu Phần<1.6] Thương Dương Chỉ
+/skill [cdtime:Ngọc Thạch Câu Phần>8,mbuff:Lan Thôi Ngọc Chiết] Thương Dương Chỉ
+
+/config before:[bufftime:Tứ Du<18.5,nombuff:Lan Thôi Ngọc Chiết,buff:Tĩnh Minh]
+/skill [nocd:Ngọc Thạch Câu Phần;cdtime:Ngọc Thạch Câu Phần<2] Lan Thôi Ngọc Chiết
+
+/config before:[mbufftime:Chung Linh Dục Tú<6,nocd:Ngọc Thạch Câu Phần,buff:Tĩnh Minh]
+/skill [mbufftime:Lan Thôi Ngọc Chiết>19.5;mbufftime:Thương Dương Chỉ>19] Chung Linh Dục Tú
+
+/config before:null
+/skill [bufftime:Tĩnh Minh<58,mbufftime:Thương Dương Chỉ>9] Ngọc Thạch Câu Phần
+/skill [target:boss,cdtime:Ngọc Thạch Câu Phần>14,buff:Tĩnh Minh>1,tbuff:Phệ Cốt>4] Loạn Tửu Thanh Hà
+/skill [mana<0.4] Bích Thủy Thao Thiên
+/skill Dương Minh Chỉ

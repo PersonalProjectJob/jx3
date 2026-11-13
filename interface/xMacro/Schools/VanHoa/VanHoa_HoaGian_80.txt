@@ -1,0 +1,56 @@
+#name VanHoa_HoaGian_80
+#tip Macro Van Hoa Hoa Gian Du v80: No Ngoc Thach dau -> Loan Tuu (2645) danh DMC -> No Ngoc Thach cuoi buff
+
+-- 1. Tu cuu & Sinh ton
+/skill [life<0.4] Xuan Ne Ho Hoa
+/skill [mana<0.4] Bich Thuy Thao Thien
+/skill [tprepare] Quyet Am Chi
+/skill [prepare] Quyet Am Chi
+
+-- 2. Ngat Duong Minh Chi khi can thiet:
+/skill [ota:Duong Minh Chi,tnobuff:Phe Cot] stopota
+/skill [ota:Duong Minh Chi,tbufftime:Phe Cot<3] stopota
+-- Ngat DMC de bat Loan Tuu KHI NGOC THACH VUA NO va da phu lai 2 DOT
+/skill [ota:Duong Minh Chi,nocd:Loan Tuu Thanh Ha,cdtime:Ngoc Thach Cau Phan>0,mbuff:Thuong Duong Chi,mbuff:Chung Linh Duc Tu] stopota
+-- Co buff Thuy Nguyet ma chua phu Lan Thoi
+/skill [ota:Duong Minh Chi,buff:Thuy Nguyet Vo Gian,nombuff:Lan Thoi Ngoc Chiet] stopota
+-- Dang di chuyen ma bi ket van cong DMC
+/skill [ota:Duong Minh Chi,moving,nobuff:Loan Tuu Thanh Ha|Thuy Nguyet Vo Gian] stopota
+
+-- 3. Mo man: Thuy Nguyet (off-GCD)
+/skill [nocd:136,nombuff:Lan Thoi Ngoc Chiet] Thuy Nguyet Vo Gian
+
+-- 4. Giai doan 1: Mo man phu du 3 DOT va No Ngoc Thach dot dau
+/skill [buff:Thuy Nguyet Vo Gian,nombuff:Lan Thoi Ngoc Chiet] Lan Thoi Ngoc Chiet
+/skill [nombuff:Thuong Duong Chi] Thuong Duong Chi
+/skill [nombuff:Chung Linh Duc Tu] Chung Linh Duc Tu
+/skill [mbuff:Thuong Duong Chi,mbuff:Chung Linh Duc Tu,nocd:Ngoc Thach Cau Phan,nombuff:Lan Thoi Ngoc Chiet] Lan Thoi Ngoc Chiet
+/skill [mbuff:Lan Thoi Ngoc Chiet,mbuff:Thuong Duong Chi,mbuff:Chung Linh Duc Tu,nocd:Loan Tuu Thanh Ha] Ngoc Thach Cau Phan
+
+-- 5. Giai doan 2: Kich hoat Loan Tuu Thanh Ha (2645):
+-- CHI BAT KHI NGOC THACH VUA NO (dang CD) VA DA PHU DU 2 DOT (Thuong Duong & Chung Linh)
+/skill [mbuff:Thuong Duong Chi,mbuff:Chung Linh Duc Tu,cdtime:Ngoc Thach Cau Phan>0] Loan Tuu Thanh Ha
+
+-- 6. Giai doan 3: TRONG BUFF LOAN TUU (2719/2726):
+-- a) Buff lai Thuong Duong & Chung Linh neu bi thieu DOT
+/skill [buff:Loan Tuu Thanh Ha,nombuff:Thuong Duong Chi] Thuong Duong Chi
+/skill [buff:Loan Tuu Thanh Ha,nombuff:Chung Linh Duc Tu] Chung Linh Duc Tu
+-- b) Chi buff Lan Thoi khi CAN NO Ngoc Thach (cuoi buff Loan Tuu <= 2s hoac DOT sap het <= 3s)
+/skill [bufftime:Loan Tuu Thanh Ha<=2,nombuff:Lan Thoi Ngoc Chiet] Lan Thoi Ngoc Chiet
+/skill [buff:Loan Tuu Thanh Ha,mbufftime:Thuong Duong Chi<=3,nombuff:Lan Thoi Ngoc Chiet] Lan Thoi Ngoc Chiet
+-- c) No Ngoc Thach khi da du Lan Thoi o cuoi buff Loan Tuu
+/skill [bufftime:Loan Tuu Thanh Ha<=2,mbuff:Lan Thoi Ngoc Chiet,mbuff:Thuong Duong Chi] Ngoc Thach Cau Phan
+/skill [buff:Loan Tuu Thanh Ha,mbufftime:Thuong Duong Chi<=3,mbuff:Lan Thoi Ngoc Chiet,mbuff:Thuong Duong Chi] Ngoc Thach Cau Phan
+-- d) Khi chua can no Ngoc Thach: CHI DANH DUONG MINH CHI!
+/skill [buff:Loan Tuu Thanh Ha] Duong Minh Chi
+
+-- 7. Giai doan 4: Vong lap binh on (ngoai Loan Tuu)
+/skill [tnobuff:Phe Cot;tbufftime:Phe Cot<3] Thuong Duong Chi
+/skill [mbuff:Lan Thoi Ngoc Chiet,mbuff:Thuong Duong Chi,mbuff:Chung Linh Duc Tu] Ngoc Thach Cau Phan
+/skill [mbuff:Thuong Duong Chi,mbuff:Chung Linh Duc Tu,nocd:Ngoc Thach Cau Phan,nombuff:Lan Thoi Ngoc Chiet] Lan Thoi Ngoc Chiet
+
+-- 8. Di chuyen (Instant Cast - zero downtime)
+/skill [moving] Thuong Duong Chi
+
+-- 9. Main DPS Filler khi dung yen
+/skill Duong Minh Chi

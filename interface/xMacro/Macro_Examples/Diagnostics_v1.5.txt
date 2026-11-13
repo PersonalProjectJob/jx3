@@ -1,0 +1,7 @@
+/xver
+/buffnames
+/buffnames target
+/skillname Kiếm Khí Trường Giang
+/skillname Đại Huyền Cấp Khúc
+/wpwatchstatus
+/procwatchstatus
